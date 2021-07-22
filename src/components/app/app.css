@@ -1,0 +1,96 @@
+/*Обнуление*/
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+:focus, :active {
+    outline: none;
+}
+
+a:focus, a:active {
+    outline: none;
+}
+
+nav, footer, header, aside {
+    display: block;
+}
+
+html, body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    height: auto;
+    max-width: 100%;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 1;
+    scroll-behavior: smooth;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+html::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 15px;
+}
+
+html::-webkit-scrollbar-thumb {
+    background: #5B555F;
+}
+
+html::-webkit-scrollbar-track {
+    background: #342A3A;
+}
+
+input, button, textarea {
+    font-family: inherit;
+}
+
+input::-ms-clear {
+    display: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+a, a:visited, a:focus, a:active, a:hover {
+    text-decoration: none;
+}
+
+ul li {
+    list-style: none;
+}
+
+img {
+    vertical-align: top;
+}
+
+p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+    color: #9E9898;
+    word-break: break-word;
+}
+
+h5 {
+    font-size: 26px;
+    color: white;
+}
+
+/*--------------------*/
