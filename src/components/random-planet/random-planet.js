@@ -2,8 +2,8 @@ import { Component } from 'react'
 import './random-planet.css'
 
 import SwapiService from '../../api/api'
-import Spinner from '../spinner';
-import ErrorIndicator from '../error-indicator';
+import Spinner from '../spinner'
+import ErrorIndicator from '../error-indicator'
 
 export default class RandomPlanet extends Component {
 
@@ -15,9 +15,12 @@ export default class RandomPlanet extends Component {
 		error: false
 	}
 
-	constructor() {
-		super()
-		this.updatePlanet()
+	componentDidMount() {
+		this.interval = setInterval(()=> this.updatePlanet(), 8000)
+	}
+
+	componentWillUnmount() {
+		clearInterval(this.interval)
 	}
 
 	onError = () => {
@@ -28,7 +31,7 @@ export default class RandomPlanet extends Component {
 	}
 
 	updatePlanet() {
-		const id = Math.floor(Math.random() * 20) + 1
+		const id = Math.floor(Math.random() * 19) + 2
 		this.apiService.getPlanet(id)
 			.then(planet => {
 				this.setState({ planet, loading: false })
@@ -46,7 +49,7 @@ export default class RandomPlanet extends Component {
 		const content = !hasData && <PlanetView planet={ planet }/>
 
 		return (
-			<div className="random-planet jumbotron rounded">
+			<div className='random-planet jumbotron rounded'>
 				{ errorMessage }
 				{ spinner }
 				{ content }
@@ -61,21 +64,21 @@ const PlanetView = ({ planet }) => {
 
 	return (
 		<>
-			<img className="planet-image"
+			<img className='planet-image'
 				 src={ `https://starwars-visualguide.com/assets/img/planets/${ id }.jpg` } alt='planet'/>
 			<div>
 				<h4>{ name }</h4>
-				<ul className="list-group list-group-flush">
-					<li className="list-group-item">
-						<span className="term">Population</span>
+				<ul className='list-group list-group-flush'>
+					<li className='list-group-item'>
+						<span className='term'>Population</span>
 						<span>{ population }</span>
 					</li>
-					<li className="list-group-item">
-						<span className="term">Rotation Period</span>
+					<li className='list-group-item'>
+						<span className='term'>Rotation Period</span>
 						<span>{ rotationPeriod }</span>
 					</li>
-					<li className="list-group-item">
-						<span className="term">Diameter</span>
+					<li className='list-group-item'>
+						<span className='term'>Diameter</span>
 						<span>{ diameter }</span>
 					</li>
 				</ul>

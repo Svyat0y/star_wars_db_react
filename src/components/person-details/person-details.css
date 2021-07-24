@@ -19,3 +19,8 @@
 .person-details .list-group-item .term {
     margin-right: .5rem;
 }
+
+.selectPersonSpan {
+    margin-top: 1.5rem;
+    display: inline-block;
+}
