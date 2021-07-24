@@ -5,7 +5,7 @@ const Header = () => {
 		<div className='header d-flex'>
 			<h3>
 				<a href='#'>
-					Star wars DB
+					Star Wars DB
 				</a>
 			</h3>
 			<ul className='d-flex'>

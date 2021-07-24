@@ -3,7 +3,6 @@
     flex-direction: row;
     padding: 1rem;
     border: 1px solid #444;
-    margin-top: 1.5rem;
 }
 
 .person-details .person-image {
@@ -23,4 +22,8 @@
 .selectPersonSpan {
     margin-top: 1.5rem;
     display: inline-block;
+}
+
+.item-details {
+    margin-top: 1.5rem;
 }

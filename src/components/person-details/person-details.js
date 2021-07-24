@@ -1,7 +1,8 @@
-import {Component} from 'react'
+import { Component } from 'react'
 import './person-details.css'
 
 import SwapiService from '../../api/api'
+import Spinner from '../spinner'
 
 export default class PersonDetails extends Component {
 
@@ -9,52 +10,66 @@ export default class PersonDetails extends Component {
 
 	state = {
 		person: null,
-		loader: false
-	}
+		loader: true
+	};
 
 	componentDidMount() {
 		this.updatePerson()
 	}
 
 	componentDidUpdate(prevProps) {
-		if(this.props.personId !== prevProps.personId) {
+		if (this.props.personId !== prevProps.personId) {
 			this.updatePerson()
+			this.setState({loader: true})
 		}
 	}
 
 	updatePerson() {
-		const {personId} = this.props
-		if(!personId) return
+		const { personId } = this.props
+		if (!personId) {
+			return
+		}
 
-		this.apiService.getPerson(personId).then(person => this.setState({person, loader: true}))
+		this.apiService.getPerson(personId)
+			.then((person) => {
+				this.setState({
+					person,
+					loader: false
+				})
+			})
 	}
 
 	render() {
 
-		if(!this.state.person) {
-			return <span className='selectPersonSpan'>Select a person from a list</span>
+		const { person, loader } = this.state
+
+		if (!person) {
+			return <span>Select a person from a list</span>
 		}
 
-		const {id, name, gender, birthYear, eyeColor} = this.state.person
+		if(loader) return <Spinner />
+
+		const { id, name, gender, birthYear, eyeColor } = person
 
 		return (
-			<div className='person-details card'>
-				<img className='person-image'
-					 src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} />
+			<div className="person-details card">
+				<img className="person-image"
+					 src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
+					 alt="character"/>
 
-				<div className='card-body'>
+				<div className="card-body">
 					<h4>{name}</h4>
-					<ul className='list-group list-group-flush'>
-						<li className='list-group-item'>
-							<span className='term'>Gender</span>
+					<ul className="list-group list-group-flush">
+						<li className="list-group-item">
+							<span className="term">Gender</span>
 							<span>{gender}</span>
 						</li>
-						<li className='list-group-item'>
-							<span className='term'>Birth Year</span>
+						<li className="list-group-item">
+							<span className="term">Birth Year</span>
 							<span>{birthYear}</span>
 						</li>
-						<li className='list-group-item'>
-							<span className='term'>Eye Color</span>
+						<li className="list-group-item">
+							<span className="term">Eye Color</span>
 							<span>{eyeColor}</span>
 						</li>
 					</ul>
