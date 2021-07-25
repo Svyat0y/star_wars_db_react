@@ -9,3 +9,8 @@
 .item-list .list-group-item:hover {
     background-color: #444;
 }
+
+.renderFnLabel {
+    color: #0dbf92;
+    margin-left: 10px;
+}

@@ -5,8 +5,9 @@ import Header from '../header'
 import RandomPlanet from '../random-planet'
 import PeoplePage from '../people-page/people-page'
 import ItemList from '../item-list'
-import PersonDetails from '../person-details'
+import ItemDetails from '../item-details'
 import SwapiService from '../../api/api'
+import { Record } from '../item-details/item-details';
 
 export default class App extends Component {
 
@@ -25,14 +26,26 @@ export default class App extends Component {
 					<div className='col-md-6'>
 						<ItemList
 							onItemSelected={ this.onPersonSelected }
-							getData={ this.apiService.getAllPlanets }
-							renderItem={ ({ name, diameter }) =>
-								<span>{ name }
-									<span style={ { color: '#007A5C' } }> (diameter: { diameter })</span>
-								</span> }/>
+							getData={ this.apiService.getAllPlanets }>
+
+							{ (i) =>
+								<span>{ i.name }
+									<span className='renderFnLabel'>(diameter: { i.diameter })</span>
+								</span> }
+
+						</ItemList>
 					</div>
 					<div className='col-md-6 item-details'>
-						<PersonDetails personId={ this.state.selectedPerson }/>
+						<ItemDetails
+							itemId={ 5 }
+							getData={ this.apiService.getPlanet }
+							getImage={this.apiService.getPlanetImage}>
+
+							<Record field='diameter' label='diameter'/>
+							<Record field='population' label='population'/>
+							<Record field='rotationPeriod' label='rotationPeriod'/>
+
+						</ItemDetails>
 					</div>
 				</div>
 
@@ -40,14 +53,30 @@ export default class App extends Component {
 					<div className='col-md-6'>
 						<ItemList
 							onItemSelected={ this.onPersonSelected }
-							getData={ this.apiService.getAllStarships }
-							renderItem={ ({ name, model }) =>
-								<span>{ name }
-									<span style={ { color: '#007A5C' } }> (model: { model })</span>
-								</span> }/>
+							getData={ this.apiService.getAllStarships }>
+
+							{ (i) =>
+								<span>{ i.name }
+									<span className='renderFnLabel'>(model: { i.model })</span>
+								</span> }
+
+						</ItemList>
 					</div>
 					<div className='col-md-6 item-details'>
-						<PersonDetails personId={ this.state.selectedPerson }/>
+						<ItemDetails
+							itemId={ 5 }
+							getData={ this.apiService.getStarship }
+							getImage={this.apiService.getStarshipImage}>
+
+							<Record field='model' label='model'/>
+							<Record field='manufacturer' label='manufacturer'/>
+							<Record field='crew' label='crew'/>
+							<Record field='passengers' label='passengers'/>
+							<Record field='length' label='length'/>
+							<Record field='cargoCapacity' label='cargoCapacity'/>
+							<Record field='costInCredits' label='costInCredits'/>
+
+						</ItemDetails>
 					</div>
 				</div>
 
