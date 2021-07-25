@@ -11,7 +11,7 @@ export default class RandomPlanet extends Component {
 
 	state = {
 		planet: {},
-		loading: true,
+		loader: true,
 		error: false
 	}
 
@@ -26,7 +26,7 @@ export default class RandomPlanet extends Component {
 	onError = () => {
 		this.setState({
 			error: true,
-			loading: false
+			loader: false
 		})
 	}
 
@@ -40,12 +40,12 @@ export default class RandomPlanet extends Component {
 	}
 
 	render() {
-		const { planet, loading, error } = this.state
+		const { planet, loader, error } = this.state
 
-		const hasData = loading || error
+		const hasData = loader || error
 
 		const errorMessage = error && <ErrorIndicator/>
-		const spinner = loading && <Spinner/>
+		const spinner = loader && <Spinner/>
 		const content = !hasData && <PlanetView planet={ planet }/>
 
 		return (

@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import './person-details.css'
+import './item-details.css'
 
 import Spinner from '../spinner'
+import ErrorIndicator from '../error-indicator';
 
-const Record = ({item, field, label }) => {
+const Record = ({ item, field, label }) => {
 	return (
 		<li className="list-group-item">
 			<span className="term">{ label }</span>
@@ -12,16 +13,16 @@ const Record = ({item, field, label }) => {
 	)
 }
 
-export {
-	Record
-}
+export { Record }
+
 
 export default class ItemDetails extends Component {
 
 	state = {
 		item: null,
 		image: null,
-		loader: true
+		loader: true,
+		error: false
 	};
 
 	componentDidMount() {
@@ -33,6 +34,13 @@ export default class ItemDetails extends Component {
 			this.updatePerson()
 			this.setState({ loader: true })
 		}
+	}
+
+	onError = () => {
+		this.setState({
+			error: true,
+			loader: false
+		})
 	}
 
 	updatePerson() {
@@ -49,11 +57,14 @@ export default class ItemDetails extends Component {
 					image: getImage(item)
 				})
 			})
+			.catch(this.onError)
 	}
 
 	render() {
 
-		const { item, loader, image } = this.state
+		const { item, loader, image, error } = this.state
+
+		if(error) return <ErrorIndicator />
 
 		if (!item) {
 			return <span>Select a person from a list</span>
@@ -61,7 +72,8 @@ export default class ItemDetails extends Component {
 
 		if (loader) return <Spinner/>
 
-		const { name, gender, birthYear, eyeColor } = item
+
+		const { name } = item
 
 		return (
 			<div className="person-details card">
@@ -74,7 +86,7 @@ export default class ItemDetails extends Component {
 					<ul className="list-group list-group-flush">
 						{
 							React.Children.map(this.props.children, (child) => {
-								return React.cloneElement(child, {item})
+								return React.cloneElement(child, { item })
 							})
 						}
 					</ul>

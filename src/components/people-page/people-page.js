@@ -3,11 +3,9 @@ import './people-page.css'
 
 import SwapiService from '../../api/api'
 import ItemList from '../item-list'
-import ItemDetails from '../item-details'
+import ItemDetails, { Record } from '../item-details'
 import ErrorBoundry from '../error-boundry'
-import ErrorIndicator from '../error-indicator'
 import Row from '../row'
-import { Record } from '../item-details/item-details'
 
 export default class PeoplePage extends Component {
 
@@ -22,10 +20,6 @@ export default class PeoplePage extends Component {
 	}
 
 	render() {
-
-		const { hasError } = this.state
-
-		if (hasError) return <ErrorIndicator/>
 
 		const itemList = (
 			<ItemList

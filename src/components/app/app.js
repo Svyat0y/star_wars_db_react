@@ -5,9 +5,8 @@ import Header from '../header'
 import RandomPlanet from '../random-planet'
 import PeoplePage from '../people-page/people-page'
 import ItemList from '../item-list'
-import ItemDetails from '../item-details'
+import ItemDetails, { Record } from '../item-details'
 import SwapiService from '../../api/api'
-import { Record } from '../item-details/item-details';
 
 export default class App extends Component {
 
@@ -39,7 +38,7 @@ export default class App extends Component {
 						<ItemDetails
 							itemId={ 5 }
 							getData={ this.apiService.getPlanet }
-							getImage={this.apiService.getPlanetImage}>
+							getImage={ this.apiService.getPlanetImage }>
 
 							<Record field='diameter' label='diameter'/>
 							<Record field='population' label='population'/>
@@ -66,7 +65,7 @@ export default class App extends Component {
 						<ItemDetails
 							itemId={ 5 }
 							getData={ this.apiService.getStarship }
-							getImage={this.apiService.getStarshipImage}>
+							getImage={ this.apiService.getStarshipImage }>
 
 							<Record field='model' label='model'/>
 							<Record field='manufacturer' label='manufacturer'/>
