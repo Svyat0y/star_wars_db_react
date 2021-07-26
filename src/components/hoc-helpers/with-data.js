@@ -1,7 +1,7 @@
 import { Component } from 'react'
 
 import Spinner from '../spinner'
-import ErrorIndicator from '../error-indicator';
+import ErrorIndicator from '../error-indicator'
 
 const withData = (View, getData) => {
 	return class extends Component {
@@ -12,7 +12,7 @@ const withData = (View, getData) => {
 		}
 
 		onError = () => {
-			this.setState({error: true})
+			this.setState({ error: true })
 		}
 
 		componentDidMount() {
@@ -25,12 +25,18 @@ const withData = (View, getData) => {
 
 			const { data, error } = this.state
 
-			if (!data) return <Spinner/>
+			const hasData = data && !error
 
-			if(error) return <ErrorIndicator />
+			const errorMessage = error && <ErrorIndicator/>
+			const spinner = !data && <Spinner/>
+			const content = hasData && <View { ...this.props } data={ data }/>
 
 			return (
-				<View { ...this.props } data={ data }/>
+				<>
+					{ errorMessage }
+					{ spinner }
+					{ content }
+				</>
 			)
 		}
 	}

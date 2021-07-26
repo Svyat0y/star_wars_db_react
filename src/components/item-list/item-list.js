@@ -1,26 +1,22 @@
 import './item-list.css'
 
 import SwapiService from '../../api/api'
-import withData from '../hoc-helpers'
+import withData from '../hoc-helpers/with-data'
 
-const ItemList = ({onItemSelected, data, children}) => {
+const ItemList = ({ onItemSelected, data, children }) => {
 
-	const renderItems = (arr) => {
-		return arr.map(item => {
-			const { id } = item
-			const label = children(item)
+	const items = data.map(item => {
+		const { id } = item
+		const label = children(item)
 
-			return (
-				<li className='list-group-item'
-					key={ id }
-					onClick={ () => onItemSelected(id) }>
-					{ label }
-				</li>
-			)
-		})
-	}
-
-	const items = renderItems(data)
+		return (
+			<li className='list-group-item'
+				key={ id }
+				onClick={ () => onItemSelected(id) }>
+				{ label }
+			</li>
+		)
+	})
 
 	return (
 		<ul className='item-list list-group'>
@@ -29,6 +25,6 @@ const ItemList = ({onItemSelected, data, children}) => {
 	)
 }
 
-const {getAllPeople} = new SwapiService()
+const { getAllPeople } = new SwapiService()
 
 export default withData(ItemList, getAllPeople)
