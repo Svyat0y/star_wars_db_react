@@ -1,9 +1,6 @@
 import React from 'react'
 import './item-details.css'
 
-import SwapiService from '../../api/api'
-import withDetails from '../hoc-helpers/with-details'
-
 const Record = ({ item, field, label }) => {
 	return (
 		<li className="list-group-item">
@@ -39,6 +36,4 @@ const ItemDetails = ({ data, children }) => {
 	)
 }
 
-const { getPerson } = new SwapiService()
-
-export default withDetails(ItemDetails, getPerson)
+export default ItemDetails

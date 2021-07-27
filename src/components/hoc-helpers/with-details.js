@@ -1,9 +1,10 @@
 import { Component } from 'react'
+
 import ErrorIndicator from '../error-indicator'
 import Spinner from '../spinner'
 
 
-const withDetails = (View, getData) => {
+const withDetails = (View, getData, getPersonImage) => {
 	return class extends Component {
 
 		state = {
@@ -32,7 +33,7 @@ const withDetails = (View, getData) => {
 		}
 
 		updatePerson() {
-			const { itemId, getImage } = this.props
+			const { itemId } = this.props
 			if (!itemId) {
 				return
 			}
@@ -42,7 +43,7 @@ const withDetails = (View, getData) => {
 					this.setState({
 						item,
 						loader: false,
-						image: getImage(item)
+						image: getPersonImage(item)
 					})
 				})
 				.catch(this.onError)
@@ -53,10 +54,11 @@ const withDetails = (View, getData) => {
 			const { item, loader, error } = this.state
 
 			const hasData = loader || error
+			const hasNoItem = item || error
 
 			const errorMessage = error && <ErrorIndicator/>
 			const spinner = loader && <Spinner/>
-			const noItem = !item && <span>Select a person from a list</span>
+			const noItem = !hasNoItem && <span>Select a person from a list</span>
 			const content = !hasData && <View { ...this.props } data={ this.state }/>
 
 			return (
