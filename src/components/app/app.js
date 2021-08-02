@@ -4,24 +4,28 @@ import './app.css'
 import Header from '../header'
 import RandomPlanet from '../random-planet'
 import PeoplePage from '../people-page/people-page'
-
+import ErrorBoundry from '../error-boundry'
 import SwapiService from '../../api'
+
+import { SwapiServiceProvider } from '../swapi-service-context'
 
 export default class App extends Component {
 
 	apiService = new SwapiService()
 
-	state = {}
-
 	render() {
 		return (
-			<div className='container'>
+			<ErrorBoundry>
+				<SwapiServiceProvider value={ this.apiService }>
+					<div className='container'>
 
-				<Header/>
-				<RandomPlanet/>
-				<PeoplePage/>
+						<Header/>
+						<RandomPlanet/>
+						<PeoplePage/>
 
-			</div>
+					</div>
+				</SwapiServiceProvider>
+			</ErrorBoundry>
 		)
 	}
 }
