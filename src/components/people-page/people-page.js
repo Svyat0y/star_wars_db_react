@@ -3,12 +3,12 @@ import './people-page.css'
 
 import ErrorBoundry from '../error-boundry'
 import Row from '../row'
-import { PersonDetails, PersonList } from '../sw-components'
+import { StarshipDetails, StarshipList } from '../sw-components'
 
 export default class PeoplePage extends Component {
 
 	state = {
-		selectedPerson: 1
+		selectedPerson: 5
 	}
 
 	onPersonSelected = (id) => {
@@ -17,8 +17,8 @@ export default class PeoplePage extends Component {
 
 	render() {
 
-		const itemList = <PersonList onItemSelected={ this.onPersonSelected }/>
-		const itemDetails = <PersonDetails itemId={ this.state.selectedPerson }/>
+		const itemList = <StarshipList onItemSelected={ this.onPersonSelected }/>
+		const itemDetails = <StarshipDetails itemId={ this.state.selectedPerson }/>
 
 		return (
 			<ErrorBoundry>

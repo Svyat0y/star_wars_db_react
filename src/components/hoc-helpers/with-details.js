@@ -4,7 +4,7 @@ import ErrorIndicator from '../error-indicator'
 import Spinner from '../spinner'
 
 
-const withDetails = (View, getData, getPersonImage) => {
+const withDetails = (View) => {
 	return class extends Component {
 
 		state = {
@@ -38,12 +38,12 @@ const withDetails = (View, getData, getPersonImage) => {
 				return
 			}
 
-			getData(itemId)
+			this.props.getData(itemId)
 				.then((item) => {
 					this.setState({
 						item,
 						loader: false,
-						image: getPersonImage(item)
+						image: this.props.getPersonImage(item)
 					})
 				})
 				.catch(this.onError)

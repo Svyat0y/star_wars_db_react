@@ -1,16 +1,16 @@
 import './item-list.css'
+import React from 'react';
 
 const ItemList = ({ onItemSelected, data, children }) => {
 
 	const items = data.map(item => {
 		const { id } = item
-		const label = children(item)
 
 		return (
 			<li className='list-group-item'
 				key={ id }
 				onClick={ () => onItemSelected(id) }>
-				{ label }
+				{ children(item) }
 			</li>
 		)
 	})

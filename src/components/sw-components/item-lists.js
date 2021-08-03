@@ -1,32 +1,24 @@
 import withData from '../hoc-helpers/with-data'
 import ItemList from '../item-list'
 
-import { withSwapiService } from '../hoc-helpers'
+import { withChildrenFn, withSwapiService } from '../hoc-helpers'
 
-const withChildrenFn = (WrappedComponent, fn) => {
-	return (props) => {
-		return (
-			<WrappedComponent { ...props }>
-				{ fn }
-			</WrappedComponent>
-		)
-	}
+
+const renderForItemLists = (i, field) => {
+	return (
+		<span>{ i.name }
+			<span className='renderFnLabel'>
+			({ field }: { i[field] } )
+		</span>
+	</span>
+	)
 }
 
-const renderPersonFn = (i) =>
-	<span>{ i.name }
-		<span className='renderFnLabel'>(birthYear: { i.birthYear })</span>
-		</span>
+const renderPersonFn = (i) => renderForItemLists(i, 'birthYear')
 
-const renderPlanetFn = (i) =>
-	<span>{ i.name }
-		<span className='renderFnLabel'>(population: { i.population })</span>
-		</span>
+const renderPlanetFn = (i) => renderForItemLists(i, 'population')
 
-const renderStarshipFn = (i) =>
-	<span>{ i.name }
-		<span className='renderFnLabel'>(model: { i.model })</span>
-		</span>
+const renderStarshipFn = (i) => renderForItemLists(i, 'model')
 
 const mapPersonMethodsToProps = (swapiService) => {
 	return {

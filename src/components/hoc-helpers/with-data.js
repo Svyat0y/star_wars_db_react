@@ -25,10 +25,11 @@ const withData = (View) => {
 
 			const { data, error } = this.state
 
+			const spinnerOn = !data || error
 			const hasData = data && !error
 
 			const errorMessage = error && <ErrorIndicator/>
-			const spinner = !data && <Spinner/>
+			const spinner = spinnerOn && <Spinner/>
 			const content = hasData && <View { ...this.props } data={ data }/>
 
 			return (
