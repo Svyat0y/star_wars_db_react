@@ -1,7 +1,7 @@
 import {
 	PersonList,
 	PlanetList,
-	StarshipList
+	StarshipList,
 } from './item-lists'
 
 import {

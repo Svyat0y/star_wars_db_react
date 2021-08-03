@@ -1,5 +1,4 @@
 import './item-list.css'
-import React from 'react';
 
 const ItemList = ({ onItemSelected, data, children }) => {
 

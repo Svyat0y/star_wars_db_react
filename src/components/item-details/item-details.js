@@ -1,5 +1,5 @@
-import React from 'react'
 import './item-details.css'
+import React from 'react';
 
 const ItemDetails = ({ data, children }) => {
 
@@ -15,7 +15,9 @@ const ItemDetails = ({ data, children }) => {
 				<h4>{ item.name }</h4>
 				<ul className="list-group list-group-flush">
 					{
-						children(item)
+						React.Children.map(children, (child) => {
+							return React.cloneElement(child, { item })
+						})
 					}
 				</ul>
 			</div>

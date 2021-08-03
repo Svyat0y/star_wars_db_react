@@ -12,37 +12,25 @@ const Record = ({ item, field, label }) => {
 	)
 }
 
-const childrenForPersonDetails = (item) => {
-	return (
-		<>
-			<Record item={ item } field='gender' label='gender'/>
-			<Record item={ item } field='birthYear' label='birthYear'/>
-			<Record item={ item } field='eyeColor' label='eyeColor'/>
-		</>
-	)
-}
+const childrenForPersonDetails = [
+	<Record field='gender' label='gender'/>,
+	<Record field='birthYear' label='birthYear'/>,
+	<Record field='eyeColor' label='eyeColor'/>
+]
 
-const childrenForPlanetDetails = (item) => {
-	return (
-		<>
-			<Record item={ item } field='diameter' label='diameter'/>
-			<Record item={ item } field='population' label='population'/>
-			<Record item={ item } field='rotationPeriod' label='rotationPeriod'/>
-		</>
-	)
-}
+const childrenForPlanetDetails = [
+	<Record field='diameter' label='diameter'/>,
+	<Record field='population' label='population'/>,
+	<Record field='rotationPeriod' label='rotationPeriod'/>
+]
 
-const childrenForStarshipDetails = (item) => {
-	return (
-		<>
-			<Record item={ item } field='model' label='model'/>
-			<Record item={ item } field='manufacturer' label='manufacturer'/>
-			<Record item={ item } field='crew' label='crew'/>
-			<Record item={ item } field='passengers' label='passengers'/>
-			<Record item={ item } field='costInCredits' label='costInCredits'/>
-		</>
-	)
-}
+const childrenForStarshipDetails = [
+	<Record field='model' label='model'/>,
+	<Record field='manufacturer' label='manufacturer'/>,
+	<Record field='crew' label='crew'/>,
+	<Record field='passengers' label='passengers'/>,
+	<Record field='costInCredits' label='costInCredits'/>
+]
 
 const mapPersonMethodsToProps = (swapiService) => {
 	return {

@@ -3,7 +3,7 @@ import './people-page.css'
 
 import ErrorBoundry from '../error-boundry'
 import Row from '../row'
-import { StarshipDetails, StarshipList } from '../sw-components'
+import { PersonDetails, PersonList, PlanetDetails, PlanetList, StarshipDetails, StarshipList } from '../sw-components'
 
 export default class PeoplePage extends Component {
 
@@ -17,12 +17,18 @@ export default class PeoplePage extends Component {
 
 	render() {
 
-		const itemList = <StarshipList onItemSelected={ this.onPersonSelected }/>
-		const itemDetails = <StarshipDetails itemId={ this.state.selectedPerson }/>
+		const personList = <PersonList onItemSelected={ this.onPersonSelected }/>
+		// const planetList = <PlanetList onItemSelected={ this.onPersonSelected }/>
+		// const starshipList = <StarshipList onItemSelected={ this.onPersonSelected }/>
+		const personDetails = <PersonDetails itemId={ this.state.selectedPerson }/>
+		// const planetDetails = <PlanetDetails itemId={ this.state.selectedPerson }/>
+		// const starshipDetails = <StarshipDetails itemId={ this.state.selectedPerson }/>
 
 		return (
 			<ErrorBoundry>
-				<Row left={ itemList } right={ itemDetails }/>
+				<Row left={ personList } right={ personDetails }/>
+				{/*<Row left={ planetList } right={ planetDetails }/>*
+				{/*<Row left={ starshipList } right={ starshipDetails }/>*/ }
 			</ErrorBoundry>
 		)
 	}

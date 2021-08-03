@@ -8,28 +8,36 @@ const withData = (View) => {
 
 		state = {
 			data: null,
-			error: false
+			error: false,
+			loader: true
 		}
 
 		onError = () => {
-			this.setState({ error: true })
+			this.setState({
+				error: true,
+				loader: false
+			})
 		}
 
 		componentDidMount() {
 			this.props.getData()
-				.then((data => this.setState({ data })))
+				.then(data => {
+					this.setState({
+						data,
+						loader: false
+					})
+				})
 				.catch(this.onError)
 		}
 
 		render() {
 
-			const { data, error } = this.state
+			const { data, error, loader } = this.state
 
-			const spinnerOn = !data || error
 			const hasData = data && !error
 
 			const errorMessage = error && <ErrorIndicator/>
-			const spinner = spinnerOn && <Spinner/>
+			const spinner = loader && <Spinner/>
 			const content = hasData && <View { ...this.props } data={ data }/>
 
 			return (

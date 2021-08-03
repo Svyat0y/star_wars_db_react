@@ -51,21 +51,18 @@ const withDetails = (View) => {
 
 		render() {
 
-			const { item, loader, error } = this.state
+			const { loader, error } = this.state
 
 			const hasData = loader || error
-			const hasNoItem = item || error
 
 			const errorMessage = error && <ErrorIndicator/>
 			const spinner = loader && <Spinner/>
-			const noItem = !hasNoItem && <span>Select a person from a list</span>
 			const content = !hasData && <View { ...this.props } data={ this.state }/>
 
 			return (
 				<>
 					{ errorMessage }
 					{ spinner }
-					{ noItem }
 					{ content }
 				</>
 			)
