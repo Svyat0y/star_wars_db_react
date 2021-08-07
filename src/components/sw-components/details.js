@@ -5,7 +5,7 @@ import { withChildrenFn, withSwapiService } from '../hoc-helpers'
 
 const Record = ({ item, field, label }) => {
 	return (
-		<li key={ item[field] } className="list-group-item">
+		<li className="list-group-item">
 			<span className="term">{ label + ':' }</span>
 			<span>{ item[field] }</span>
 		</li>
@@ -13,23 +13,23 @@ const Record = ({ item, field, label }) => {
 }
 
 const childrenForPersonDetails = [
-	<Record field='gender' label='gender'/>,
-	<Record field='birthYear' label='birthYear'/>,
-	<Record field='eyeColor' label='eyeColor'/>
+	<Record key='gender' field='gender' label='gender'/>,
+	<Record key='birthYear' field='birthYear' label='birthYear'/>,
+	<Record key='eyeColor' field='eyeColor' label='eyeColor'/>
 ]
 
 const childrenForPlanetDetails = [
-	<Record field='diameter' label='diameter'/>,
-	<Record field='population' label='population'/>,
-	<Record field='rotationPeriod' label='rotationPeriod'/>
+	<Record key='diameter' field='diameter' label='diameter'/>,
+	<Record key='population' field='population' label='population'/>,
+	<Record key='rotationPeriod' field='rotationPeriod' label='rotationPeriod'/>
 ]
 
 const childrenForStarshipDetails = [
-	<Record field='model' label='model'/>,
-	<Record field='manufacturer' label='manufacturer'/>,
-	<Record field='crew' label='crew'/>,
-	<Record field='passengers' label='passengers'/>,
-	<Record field='costInCredits' label='costInCredits'/>
+	<Record key='model' field='model' label='model'/>,
+	<Record key='manufacturer' field='manufacturer' label='manufacturer'/>,
+	<Record key='crew' field='crew' label='crew'/>,
+	<Record key='passengers' field='passengers' label='passengers'/>,
+	<Record key='costInCredits' field='costInCredits' label='costInCredits'/>
 ]
 
 const mapPersonMethodsToProps = (swapiService) => {
