@@ -1,7 +1,7 @@
 import withData from '../hoc-helpers/with-data'
 import ItemList from '../item-list'
 
-import { withChildrenFn, withSwapiService } from '../hoc-helpers'
+import { compose, withChildrenFn, withSwapiService } from '../hoc-helpers'
 
 
 const renderForItemLists = (i, field) => {
@@ -38,11 +38,23 @@ const mapStarshipMethodsToProps = (swapiService) => {
 	}
 }
 
-const PersonList = withSwapiService(withData(withChildrenFn(ItemList, renderPersonFn)), mapPersonMethodsToProps)
+const PersonList = compose(
+	withSwapiService(mapPersonMethodsToProps),
+	withData,
+	withChildrenFn(renderPersonFn)
+)(ItemList)
 
-const PlanetList = withSwapiService(withData(withChildrenFn(ItemList, renderPlanetFn)), mapPlanetMethodsToProps)
+const PlanetList = compose(
+	withSwapiService(mapPlanetMethodsToProps),
+	withData,
+	withChildrenFn(renderPlanetFn)
+)(ItemList)
 
-const StarshipList = withSwapiService(withData(withChildrenFn(ItemList, renderStarshipFn)), mapStarshipMethodsToProps)
+const StarshipList = compose(
+	withSwapiService(mapStarshipMethodsToProps),
+	withData,
+	withChildrenFn(renderStarshipFn)
+)(ItemList)
 
 export {
 	PersonList,

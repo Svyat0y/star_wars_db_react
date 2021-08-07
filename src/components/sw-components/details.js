@@ -1,7 +1,7 @@
 import withDetails from '../hoc-helpers/with-details'
 import ItemDetails from '../item-details/item-details'
 
-import { withChildrenFn, withSwapiService } from '../hoc-helpers'
+import { compose, withChildrenFn, withSwapiService } from '../hoc-helpers'
 
 const Record = ({ item, field, label }) => {
 	return (
@@ -53,12 +53,23 @@ const mapStarshipMethodsToProps = (swapiService) => {
 	}
 }
 
+const PersonDetails = compose(
+	withSwapiService(mapPersonMethodsToProps),
+	withDetails,
+	withChildrenFn(childrenForPersonDetails)
+)(ItemDetails)
 
-const PersonDetails = withSwapiService(withDetails(withChildrenFn(ItemDetails, childrenForPersonDetails)), mapPersonMethodsToProps)
+const PlanetDetails = compose(
+	withSwapiService(mapPlanetMethodsToProps),
+	withDetails,
+	withChildrenFn(childrenForPlanetDetails)
+)(ItemDetails)
 
-const PlanetDetails = withSwapiService(withDetails(withChildrenFn(ItemDetails, childrenForPlanetDetails)), mapPlanetMethodsToProps)
-
-const StarshipDetails = withSwapiService(withDetails(withChildrenFn(ItemDetails, childrenForStarshipDetails)), mapStarshipMethodsToProps)
+const StarshipDetails = compose(
+	withSwapiService(mapStarshipMethodsToProps),
+	withDetails,
+	withChildrenFn(childrenForStarshipDetails)
+)(ItemDetails)
 
 export {
 	PersonDetails,

@@ -1,4 +1,4 @@
-const withChildrenFn = (WrappedComponent, fn) => {
+const withChildrenFn = (fn) => (WrappedComponent) => {
 	return (props) => {
 		return (
 			<WrappedComponent { ...props }>
