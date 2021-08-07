@@ -5,7 +5,7 @@ import { withChildrenFn, withSwapiService } from '../hoc-helpers'
 
 const Record = ({ item, field, label }) => {
 	return (
-		<li className="list-group-item">
+		<li key={ item[field] } className="list-group-item">
 			<span className="term">{ label + ':' }</span>
 			<span>{ item[field] }</span>
 		</li>

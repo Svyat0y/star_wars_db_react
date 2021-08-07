@@ -2,8 +2,8 @@ import { Component } from 'react'
 import './app.css'
 
 import Header from '../header'
+import { PeoplesPage, PlanetsPage, StarshipsPage } from '../pages'
 import RandomPlanet from '../random-planet'
-import PeoplePage from '../people-page/people-page'
 import ErrorBoundry from '../error-boundry'
 import SwapiService from '../../api'
 
@@ -21,7 +21,9 @@ export default class App extends Component {
 
 						<Header/>
 						<RandomPlanet/>
-						<PeoplePage/>
+						<PeoplesPage/>
+						<PlanetsPage/>
+						<StarshipsPage/>
 
 					</div>
 				</SwapiServiceProvider>

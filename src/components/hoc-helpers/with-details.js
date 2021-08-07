@@ -10,17 +10,17 @@ const withDetails = (View) => {
 		state = {
 			item: null,
 			image: null,
-			loader: true,
+			loader: false,
 			error: false
 		};
 
 		componentDidMount() {
-			this.updatePerson()
+			this.updateItem()
 		}
 
 		componentDidUpdate(prevProps) {
 			if (this.props.itemId !== prevProps.itemId) {
-				this.updatePerson()
+				this.updateItem()
 				this.setState({ loader: true })
 			}
 		}
@@ -32,7 +32,7 @@ const withDetails = (View) => {
 			})
 		}
 
-		updatePerson() {
+		updateItem() {
 			const { itemId } = this.props
 			if (!itemId) {
 				return
@@ -51,13 +51,13 @@ const withDetails = (View) => {
 
 		render() {
 
-			const { loader, error } = this.state
-
-			const hasData = loader || error
+			const { loader, error, item } = this.state
 
 			const errorMessage = error && <ErrorIndicator/>
 			const spinner = loader && <Spinner/>
-			const content = !hasData && <View { ...this.props } data={ this.state }/>
+			const content = item
+				? <View { ...this.props } data={ this.state }/>
+				: <span>select an item from the list</span>
 
 			return (
 				<>
