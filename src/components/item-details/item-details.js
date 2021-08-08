@@ -1,8 +1,9 @@
+import React from 'react'
 import './item-details.css'
-import React from 'react';
+import PropTypes from 'prop-types'
 
 const ItemDetails = ({ data, children }) => {
-
+	
 	const { item, image } = data
 
 	return (
@@ -23,6 +24,11 @@ const ItemDetails = ({ data, children }) => {
 			</div>
 		</div>
 	)
+}
+
+ItemDetails.propTypes = {
+	data: PropTypes.object.isRequired,
+	children: PropTypes.array.isRequired
 }
 
 export default ItemDetails

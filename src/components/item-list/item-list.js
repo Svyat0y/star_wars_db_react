@@ -1,6 +1,7 @@
 import './item-list.css'
+import PropTypes from 'prop-types'
 
-const ItemList = ({ onItemSelected, data, children }) => {
+const ItemList = ({ onItemSelected = () => {}, data, children }) => {
 
 	const items = data.map(item => {
 		const { id } = item
@@ -19,6 +20,12 @@ const ItemList = ({ onItemSelected, data, children }) => {
 			{ items }
 		</ul>
 	)
+}
+
+ItemList.propTypes = {
+	onItemSelected: PropTypes.func,
+	data: PropTypes.arrayOf(PropTypes.object).isRequired,
+	children: PropTypes.func.isRequired
 }
 
 export default ItemList

@@ -54,15 +54,15 @@ const withDetails = (View) => {
 			const { loader, error, item } = this.state
 
 			const errorMessage = error && <ErrorIndicator/>
-			const spinner = loader && <Spinner/>
 			const content = item
 				? <View { ...this.props } data={ this.state }/>
 				: <span>select an item from the list</span>
 
+			if (loader) return <Spinner/>
+
 			return (
 				<>
 					{ errorMessage }
-					{ spinner }
 					{ content }
 				</>
 			)
