@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 import withData from '../hoc-helpers/with-data'
 import ItemList from '../item-list'
 
@@ -12,6 +14,11 @@ const renderForItemLists = (i, field) => {
 		</span>
 	</span>
 	)
+}
+
+renderForItemLists.propTypes = {
+	i: PropTypes.object.isRequired,
+	field: PropTypes.string.isRequired
 }
 
 const renderPersonFn = (i) => renderForItemLists(i, 'birthYear')

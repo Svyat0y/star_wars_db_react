@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 import withDetails from '../hoc-helpers/with-details'
 import ItemDetails from '../item-details/item-details'
 
@@ -10,6 +12,12 @@ const Record = ({ item, field, label }) => {
 			<span>{ item[field] }</span>
 		</li>
 	)
+}
+
+Record.propTypes = {
+	item: PropTypes.object,
+	field: PropTypes.string.isRequired,
+	label: PropTypes.string.isRequired
 }
 
 const childrenForPersonDetails = [

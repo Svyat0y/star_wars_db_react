@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import ErrorIndicator from '../error-indicator'
 import Spinner from '../spinner'
@@ -12,7 +13,12 @@ const withDetails = (View) => {
 			image: null,
 			loader: false,
 			error: false
-		};
+		}
+
+		static propTypes = {
+			getData: PropTypes.func.isRequired,
+			itemId: PropTypes.string
+		}
 
 		componentDidMount() {
 			this.updateItem()
@@ -50,7 +56,6 @@ const withDetails = (View) => {
 		}
 
 		render() {
-
 			const { loader, error, item } = this.state
 
 			const errorMessage = error && <ErrorIndicator/>

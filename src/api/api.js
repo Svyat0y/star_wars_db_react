@@ -9,7 +9,7 @@ export default class SwapiService {
 		if (!response.ok) {
 			throw new Error(`Could not fetch ${ url }` + `, received ${ response.status }`)
 		}
-		
+
 		return await response.json()
 	}
 
@@ -18,7 +18,7 @@ export default class SwapiService {
 	}
 
 	getPerson = async (id) => {
-		return await this.getResource(`/people/${id}/`).then(person => this._transformPerson(person))
+		return await this.getResource(`/people/${ id }/`).then(person => this._transformPerson(person))
 	}
 
 	getAllStarships = async () => {
@@ -26,7 +26,7 @@ export default class SwapiService {
 	}
 
 	getStarship = async (id) => {
-		return await this.getResource(`/starships/${id}/`).then(starship => this._transformStarship(starship))
+		return await this.getResource(`/starships/${ id }/`).then(starship => this._transformStarship(starship))
 	}
 
 	getAllPlanets = async () => {
@@ -34,19 +34,19 @@ export default class SwapiService {
 	}
 
 	getPlanet = async (id) => {
-		return await this.getResource(`/planets/${id}`).then(planet => this._transformPlanet(planet))
+		return await this.getResource(`/planets/${ id }`).then(planet => this._transformPlanet(planet))
 	}
 
-	getPersonImage = ({id}) => {
-		return `${this._baseImage}/characters/${id}.jpg`
+	getPersonImage = ({ id }) => {
+		return `${ this._baseImage }/characters/${ id }.jpg`
 	}
 
-	getPlanetImage = ({id}) => {
-		return `${this._baseImage}/planets/${id}.jpg`
+	getPlanetImage = ({ id }) => {
+		return `${ this._baseImage }/planets/${ id }.jpg`
 	}
 
-	getStarshipImage = ({id}) => {
-		return `${this._baseImage}/starships/${id}.jpg`
+	getStarshipImage = ({ id }) => {
+		return `${ this._baseImage }/starships/${ id }.jpg`
 	}
 
 
@@ -73,7 +73,7 @@ export default class SwapiService {
 			manufacturer: starship.manufacturer,
 			costInCredits: starship.cost_in_credits,
 			length: starship.length,
-			crew:starship.crew,
+			crew: starship.crew,
 			passengers: starship.passengers,
 			cargoCapacity: starship.cargo_capacity
 		}

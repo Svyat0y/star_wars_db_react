@@ -1,3 +1,5 @@
+import ProTypes from 'prop-types'
+
 const withChildrenFn = (fn) => (WrappedComponent) => {
 	return (props) => {
 		return (
@@ -6,6 +8,10 @@ const withChildrenFn = (fn) => (WrappedComponent) => {
 			</WrappedComponent>
 		)
 	}
+}
+
+withChildrenFn.propTypes = {
+	fn: ProTypes.func.isRequired
 }
 
 export default withChildrenFn

@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import Spinner from '../spinner'
 import ErrorIndicator from '../error-indicator'
@@ -10,6 +11,10 @@ const withData = (View) => {
 			data: null,
 			error: false,
 			loader: true
+		}
+
+		static propTypes = {
+			getData: PropTypes.func.isRequired
 		}
 
 		onError = () => {

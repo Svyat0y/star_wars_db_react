@@ -3,7 +3,7 @@ import './item-details.css'
 import PropTypes from 'prop-types'
 
 const ItemDetails = ({ data, children }) => {
-	
+
 	const { item, image } = data
 
 	return (
