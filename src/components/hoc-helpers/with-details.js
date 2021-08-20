@@ -11,7 +11,7 @@ const withDetails = (View) => {
 		state = {
 			item: null,
 			image: null,
-			loader: false,
+			loader: true,
 			error: false
 		}
 
@@ -59,14 +59,12 @@ const withDetails = (View) => {
 			const { loader, error, item } = this.state
 
 			const errorMessage = error && <ErrorIndicator/>
-			const content = item
-				? <View { ...this.props } data={ this.state }/>
-				: <span>select an item from the list</span>
-
-			if (loader) return <Spinner/>
+			const spinner = loader && <Spinner/>
+			const content = (item && !loader) && <View { ...this.props } data={ this.state }/>
 
 			return (
 				<>
+					{ spinner }
 					{ errorMessage }
 					{ content }
 				</>

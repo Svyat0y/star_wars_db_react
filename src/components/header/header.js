@@ -1,22 +1,23 @@
 import './header.css'
+import { NavLink } from 'react-router-dom'
 
 const Header = () => {
 	return (
 		<div className='header d-flex'>
 			<h3>
-				<a href='#'>
+				<NavLink to='/'>
 					Star Wars DB
-				</a>
+				</NavLink>
 			</h3>
 			<ul className='d-flex'>
 				<li>
-					<a href='#'>People</a>
+					<NavLink to='/people/'>People</NavLink>
 				</li>
 				<li>
-					<a href='#'>Planets</a>
+					<NavLink to='/planets/'>Planets</NavLink>
 				</li>
 				<li>
-					<a href='#'>Starships</a>
+					<NavLink to='/starships/'>Starships</NavLink>
 				</li>
 			</ul>
 		</div>

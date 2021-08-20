@@ -1,28 +1,13 @@
-import { Component } from 'react'
-
 import ErrorBoundry from '../error-boundry'
-import Row from '../row'
-import { PersonDetails, PersonList } from '../sw-components'
+import { PersonList } from '../sw-components'
 
-export default class PeoplesPage extends Component {
+const PeoplesPage = ({ history }) => {
 
-	state = {
-		selectedItem: null
-	}
-
-	onItemSelected = (id) => {
-		this.setState({ selectedItem: id })
-	}
-
-	render() {
-
-		const personList = <PersonList onItemSelected={ this.onItemSelected }/>
-		const personDetails = <PersonDetails itemId={ this.state.selectedItem }/>
-
-		return (
-			<ErrorBoundry>
-				<Row left={ personList } right={ personDetails }/>
-			</ErrorBoundry>
-		)
-	}
+	return (
+		<ErrorBoundry>
+			<PersonList onItemSelected={ (itemId) => history.push(itemId) }/>
+		</ErrorBoundry>
+	)
 }
+
+export default PeoplesPage
