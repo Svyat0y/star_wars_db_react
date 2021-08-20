@@ -9,7 +9,7 @@ import SwapiService from '../../api'
 import { PersonDetails, PlanetDetails, StarshipDetails } from '../sw-components'
 
 import { SwapiServiceProvider } from '../swapi-service-context'
-import { BrowserRouter as Router, HashRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 
 export default class App extends Component {
@@ -20,7 +20,7 @@ export default class App extends Component {
 		return (
 			<ErrorBoundry>
 				<SwapiServiceProvider value={ this.apiService }>
-					<HashRouter>
+					<Router>
 						<div className='container'>
 							<Header/>
 							<RandomPlanet/>
@@ -49,7 +49,7 @@ export default class App extends Component {
 							</Switch>
 
 						</div>
-					</HashRouter>
+					</Router>
 				</SwapiServiceProvider>
 			</ErrorBoundry>
 		)
